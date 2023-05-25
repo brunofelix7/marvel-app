@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MarvelApp.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/dark_bg</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/ic_logo</item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">3000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Marvelapp</item>
+    </style>
+</resources>
