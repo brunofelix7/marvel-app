@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.ui
+package dev.brunofelix.marvelapp.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
