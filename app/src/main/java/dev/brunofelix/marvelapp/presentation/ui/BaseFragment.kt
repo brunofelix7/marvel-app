@@ -12,9 +12,9 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> constructor(
     private val bindingInflater: (inflater: LayoutInflater) -> VB
 ) : Fragment() {
 
+    protected abstract val viewModel: VM
     private var _binding: VB? = null
     val binding get() = _binding!!
-    abstract val viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -22,6 +22,8 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel> constructor(
         _binding = bindingInflater.invoke(inflater)
         return binding.root
     }
+
+    abstract fun configureUI()
 
     override fun onDestroyView() {
         super.onDestroyView()
