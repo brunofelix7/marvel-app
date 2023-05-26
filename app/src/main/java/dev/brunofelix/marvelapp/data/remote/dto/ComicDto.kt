@@ -1,7 +1,7 @@
 package dev.brunofelix.marvelapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
-import dev.brunofelix.marvelapp.domain.Comic
+import dev.brunofelix.marvelapp.domain.model.Comic
 
 data class ComicDto(
     @SerializedName("id")

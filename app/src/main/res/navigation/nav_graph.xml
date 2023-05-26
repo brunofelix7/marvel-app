@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/characterFragment">
+
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="dev.brunofelix.marvelapp.presentation.ui.character.CharacterFragment"
+        android:label="CharacterFragment"
+        tools:layout="@layout/fragment_character">
+        <action
+            android:id="@+id/navFromCharacterToCharacterDetails"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="dev.brunofelix.marvelapp.presentation.ui.character.CharacterDetailsFragment"
+        android:label="CharacterDetailsFragment"
+        tools:layout="@layout/fragment_character_details">
+        <argument
+            android:name="character"
+            app:argType="dev.brunofelix.marvelapp.domain.model.Character" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterFavoriteFragment"
+        android:name="dev.brunofelix.marvelapp.presentation.ui.character.CharacterFavoriteFragment"
+        android:label="CharacterFavoriteFragment"
+        tools:layout="@layout/fragment_character_favorite">
+        <action
+            android:id="@+id/navFromCharacterFavoriteToCharacterDetails"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterSearchFragment"
+        android:name="dev.brunofelix.marvelapp.presentation.ui.character.CharacterSearchFragment"
+        android:label="CharacterSearchFragment"
+        tools:layout="@layout/fragment_character_search">
+        <action
+            android:id="@+id/navFromCharacterSearchToCharacterDetails"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

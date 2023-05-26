@@ -25,7 +25,9 @@
     <string name="message_delete_character">Successfully deleted</string>
     <string name="tv_empty_text">Nothing here</string>
 
-    <!-- Menu details -->
+    <!-- Menu -->
+    <string name="home">Home</string>
+    <string name="search">Search</string>
     <string name="favorite">Favorite</string>
 
     <!-- Toast messages -->

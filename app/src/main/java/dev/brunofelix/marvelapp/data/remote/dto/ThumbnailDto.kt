@@ -1,7 +1,7 @@
 package dev.brunofelix.marvelapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
-import dev.brunofelix.marvelapp.domain.Thumbnail
+import dev.brunofelix.marvelapp.domain.model.Thumbnail
 
 data class ThumbnailDto(
     @SerializedName("path")
