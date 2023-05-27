@@ -5,7 +5,7 @@ import dev.brunofelix.marvelapp.domain.model.Comic
 
 data class ComicDto(
     @SerializedName("id")
-    var id: Long?,
+    var id: Int?,
 
     @SerializedName("title")
     var title: String?,

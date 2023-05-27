@@ -5,7 +5,7 @@ import dev.brunofelix.marvelapp.domain.model.Character
 
 data class CharacterDto(
     @SerializedName("id")
-    var id: Long?,
+    var id: Int?,
 
     @SerializedName("name")
     var name: String?,

@@ -1,12 +1,18 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("com.google.devtools.ksp")
     id("kotlin-parcelize")
-    id("dagger.hilt.android.plugin")
+    id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
 }
+
+val properties = Properties()
 
 android {
     namespace = "dev.brunofelix.marvelapp"
@@ -23,6 +29,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Marvel API
+            properties.load(FileInputStream(project.rootProject.file("api.properties")))
+            buildConfigField("String", "BASE_URL", "\"${properties.getProperty("base_url")}\"")
+            buildConfigField("String", "PUBLIC_KEY", "\"${properties.getProperty("public_key")}\"")
+            buildConfigField("String", "PRIVATE_KEY", "\"${properties.getProperty("private_key")}\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -37,6 +50,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -90,9 +104,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.42")
-    ksp("com.google.dagger:hilt-compiler:2.42")
-    ksp("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-compiler:2.46.1")
 
     //  Room
     implementation("androidx.room:room-runtime:2.5.1")
@@ -115,4 +128,8 @@ dependencies {
     // Instrumented / UI Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+kapt {
+    correctErrorTypes = true
 }
