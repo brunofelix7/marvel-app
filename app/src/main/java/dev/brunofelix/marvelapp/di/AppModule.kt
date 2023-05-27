@@ -5,8 +5,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.brunofelix.marvelapp.BuildConfig
+import dev.brunofelix.marvelapp.data.remote.interceptor.HttpInterceptor
 import dev.brunofelix.marvelapp.data.remote.MyApi
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -17,7 +19,28 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient() = OkHttpClient()
+    fun provideLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideHttpClient(
+        httpInterceptor: HttpInterceptor,
+        loggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient {
+        return OkHttpClient()
+            .newBuilder()
+            .addInterceptor(httpInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
 
     @Provides
     @Singleton

@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.R
 import dev.brunofelix.marvelapp.databinding.ActivityMainBinding
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,10 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureNavBar()
-
-        Timber.d("bse_url= ${BuildConfig.BASE_URL}")
-        Timber.d("public_key= ${BuildConfig.PUBLIC_KEY}")
-        Timber.d("private_key= ${BuildConfig.PRIVATE_KEY}")
     }
 
     private fun configureNavBar() {
