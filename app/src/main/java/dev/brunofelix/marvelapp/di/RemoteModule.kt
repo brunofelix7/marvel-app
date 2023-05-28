@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.data.remote.interceptor.HttpInterceptor
-import dev.brunofelix.marvelapp.data.remote.MyApi
+import dev.brunofelix.marvelapp.data.remote.MarvelApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object RemoteModule {
 
     @Provides
     @Singleton
@@ -44,11 +44,11 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideApi(client: OkHttpClient): MyApi =
+    fun provideApi(client: OkHttpClient): MarvelApi =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(MyApi::class.java)
+            .create(MarvelApi::class.java)
 }

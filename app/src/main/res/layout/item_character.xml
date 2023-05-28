@@ -24,8 +24,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/characterContent"
         android:layout_width="match_parent"
-        android:paddingBottom="8dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/characterImage"
@@ -57,6 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:maxLength="50"
             android:text="@string/item_description"
             android:textAlignment="inherit"
             android:textColor="@color/white"

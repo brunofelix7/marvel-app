@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MyApi {
+interface MarvelApi {
 
     @GET("/characters")
     suspend fun getCharacters(
