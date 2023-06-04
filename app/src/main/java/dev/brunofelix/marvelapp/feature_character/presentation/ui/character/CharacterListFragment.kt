@@ -14,16 +14,16 @@ import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
 import dev.brunofelix.marvelapp.core.presentation.ui.UIState
 import dev.brunofelix.marvelapp.feature_character.presentation.adapter.CharacterAdapter
 import dev.brunofelix.marvelapp.core.presentation.ui.BaseFragment
-import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterViewModel
+import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterListViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, CharacterViewModel>(
+class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, CharacterListViewModel>(
     FragmentCharacterListBinding::inflate
 ) {
 
-    override val viewModel: CharacterViewModel by viewModels()
+    override val viewModel: CharacterListViewModel by viewModels()
     private val characterAdapter by lazy { CharacterAdapter() }
     private var job: Job? = null
 

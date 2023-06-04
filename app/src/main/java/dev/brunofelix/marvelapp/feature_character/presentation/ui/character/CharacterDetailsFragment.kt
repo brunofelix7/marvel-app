@@ -6,14 +6,14 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import dev.brunofelix.marvelapp.databinding.FragmentCharacterDetailsBinding
 import dev.brunofelix.marvelapp.core.presentation.ui.BaseFragment
-import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterViewModel
+import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterListViewModel
 
 @AndroidEntryPoint
-class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, CharacterViewModel>(
+class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, CharacterListViewModel>(
     FragmentCharacterDetailsBinding::inflate
 ) {
 
-    override val viewModel: CharacterViewModel by viewModels()
+    override val viewModel: CharacterListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

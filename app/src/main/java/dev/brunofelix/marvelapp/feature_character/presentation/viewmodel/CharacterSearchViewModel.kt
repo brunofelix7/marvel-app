@@ -8,6 +8,7 @@ import dev.brunofelix.marvelapp.feature_character.domain.model.Character
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.ListCharactersUseCase
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
 import dev.brunofelix.marvelapp.core.presentation.ui.UIState
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.SearchCharactersUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,8 +19,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterViewModel @Inject constructor(
-    private val useCase: ListCharactersUseCase
+class CharacterSearchViewModel @Inject constructor(
+    private val useCase: SearchCharactersUseCase
 ) : ViewModel() {
 
     private val _uiEvent = MutableSharedFlow<UIEvent>()
@@ -28,11 +29,7 @@ class CharacterViewModel @Inject constructor(
     private var _charactersList = MutableStateFlow<UIState<List<Character>>>(UIState.Empty())
     val charactersList: StateFlow<UIState<List<Character>>> get() = _charactersList
 
-    init {
-        fetchCharacters()
-    }
-
-    private fun fetchCharacters(name: String? = null) = viewModelScope.launch {
+    fun searchCharacters(name: String) = viewModelScope.launch {
         useCase.invoke(name).onEach { response ->
             when (response) {
                 is ResourceState.Loading -> {
