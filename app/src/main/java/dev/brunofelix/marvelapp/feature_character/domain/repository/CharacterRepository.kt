@@ -1,6 +1,6 @@
 package dev.brunofelix.marvelapp.feature_character.domain.repository
 
-import dev.brunofelix.marvelapp.feature_character.data.dto.CharacterDataDto
+import dev.brunofelix.marvelapp.feature_character.data.remote.dto.CharacterDataDto
 import retrofit2.Response
 
 interface CharacterRepository {

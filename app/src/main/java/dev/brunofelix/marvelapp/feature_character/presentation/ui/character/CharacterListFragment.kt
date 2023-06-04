@@ -8,12 +8,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.brunofelix.marvelapp.databinding.FragmentCharacterListBinding
-import dev.brunofelix.marvelapp.extension.showSnackBar
-import dev.brunofelix.marvelapp.extension.showToast
-import dev.brunofelix.marvelapp.presentation.UIEvent
-import dev.brunofelix.marvelapp.presentation.UIState
+import dev.brunofelix.marvelapp.core.extension.showSnackBar
+import dev.brunofelix.marvelapp.core.extension.showToast
+import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
+import dev.brunofelix.marvelapp.core.presentation.ui.UIState
 import dev.brunofelix.marvelapp.feature_character.presentation.adapter.CharacterAdapter
-import dev.brunofelix.marvelapp.presentation.ui.BaseFragment
+import dev.brunofelix.marvelapp.core.presentation.ui.BaseFragment
 import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

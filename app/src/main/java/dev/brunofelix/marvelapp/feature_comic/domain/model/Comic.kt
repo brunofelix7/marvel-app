@@ -1,13 +1,13 @@
-package dev.brunofelix.marvelapp.feature_character.domain.model
+package dev.brunofelix.marvelapp.feature_comic.domain.model
 
 import android.os.Parcelable
 import dev.brunofelix.marvelapp.core.domain.model.Thumbnail
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Character(
+data class Comic(
     val id: Int,
-    val name: String,
+    val title: String,
     val description: String,
     val thumbnail: Thumbnail?
 ) : Parcelable
