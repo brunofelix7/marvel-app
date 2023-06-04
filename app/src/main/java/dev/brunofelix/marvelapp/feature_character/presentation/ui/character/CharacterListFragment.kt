@@ -7,11 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import dev.brunofelix.marvelapp.core.extension.hide
 import dev.brunofelix.marvelapp.databinding.FragmentCharacterListBinding
 import dev.brunofelix.marvelapp.core.extension.showSnackBar
 import dev.brunofelix.marvelapp.core.extension.showToast
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
-import dev.brunofelix.marvelapp.core.presentation.ui.UIState
 import dev.brunofelix.marvelapp.feature_character.presentation.adapter.CharacterAdapter
 import dev.brunofelix.marvelapp.core.presentation.ui.BaseFragment
 import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterListViewModel
@@ -59,18 +59,16 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, Charact
 
     private fun collectData() {
         job = lifecycleScope.launch {
-            viewModel.charactersList.collect { uiState ->
-                when (uiState) {
-                    is UIState.Loading -> {
-                        binding.rvCharacters.isVisible = false
+            viewModel.charactersListState.collect { uiState ->
+                binding.progressBar.isVisible = uiState.isLoading
+
+                uiState.data?.let { data ->
+                    if (data.isNotEmpty() && !uiState.isLoading) {
+                        characterAdapter.differ.submitList(data)
+                        configureRecyclerView()
+                    } else {
+                        binding.rvCharacters.hide()
                     }
-                    is UIState.Success -> {
-                        uiState.data?.let { data ->
-                            characterAdapter.differ.submitList(data)
-                            configureRecyclerView()
-                        }
-                    }
-                    else -> { }
                 }
             }
         }
@@ -80,9 +78,6 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, Charact
         lifecycleScope.launch {
             viewModel.uiEvent.collect { uiEvent ->
                 when (uiEvent) {
-                    is UIEvent.ShowProgressBar -> {
-                        binding.progressBar.isVisible = uiEvent.isLoading
-                    }
                     is UIEvent.ShowToast -> {
                         view?.showToast(uiEvent.message)
                     }
