@@ -21,7 +21,7 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+    val differ = AsyncListDiffer(this, differCallback)
 
     private var characterList: List<Character>
         get() = differ.currentList
@@ -40,12 +40,12 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
         val character = differ.currentList[position]
         holder.setIsRecyclable(false)
         holder.binding.apply {
-            val imageUrl = character.thumbnail?.path + character.thumbnail?.extension
+            val imageUrl = "${character.thumbnail?.path}.${character.thumbnail?.extension}"
 
             characterName.text = character.name
-            characterDescription.text = character.description
             Glide.with(holder.itemView.context)
                 .load(imageUrl)
+                .centerCrop()
                 .into(characterImage)
         }
         holder.itemView.setOnClickListener {

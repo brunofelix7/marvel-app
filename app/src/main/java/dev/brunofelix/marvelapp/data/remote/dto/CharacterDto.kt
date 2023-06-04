@@ -18,6 +18,7 @@ data class CharacterDto(
 ) {
     fun toCharacter(): Character {
         return Character(
+            id = id ?: 0,
             name = name ?: "",
             description = description ?: "",
             thumbnail = thumbnail?.toThumbnail()

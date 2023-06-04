@@ -13,6 +13,7 @@ plugins {
 }
 
 val properties = Properties()
+val messagesProperties = Properties()
 
 android {
     namespace = "dev.brunofelix.marvelapp"
@@ -32,9 +33,15 @@ android {
         debug {
             // Marvel API
             properties.load(FileInputStream(project.rootProject.file("api.properties")))
+            messagesProperties.load(FileInputStream(project.rootProject.file("messages.properties")))
+
             buildConfigField("String", "BASE_URL", "\"${properties.getProperty("base_url")}\"")
             buildConfigField("String", "PUBLIC_KEY", "\"${properties.getProperty("public_key")}\"")
             buildConfigField("String", "PRIVATE_KEY", "\"${properties.getProperty("private_key")}\"")
+
+            buildConfigField("String", "UNKNOWN_ERROR", "\"${messagesProperties.getProperty("msg_unknown_error")}\"")
+            buildConfigField("String", "HOST_ERROR", "\"${messagesProperties.getProperty("msg_unknown_host")}\"")
+            buildConfigField("String", "SERVER_ERROR", "\"${messagesProperties.getProperty("msg_connection_error")}\"")
         }
         release {
             isMinifyEnabled = false

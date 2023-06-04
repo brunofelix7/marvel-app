@@ -18,6 +18,7 @@ data class ComicDto(
 ) {
     fun toComic(): Comic {
         return Comic(
+            id = id ?: 0,
             title = title ?: "",
             description = description ?: "",
             thumbnail = thumbnail?.toThumbnail()

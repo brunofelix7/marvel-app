@@ -7,6 +7,8 @@ import dagger.hilt.components.SingletonComponent
 import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.data.remote.interceptor.HttpInterceptor
 import dev.brunofelix.marvelapp.data.remote.MarvelApi
+import dev.brunofelix.marvelapp.data.remote.repository.MarvelRepositoryImpl
+import dev.brunofelix.marvelapp.domain.repository.MarvelRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -51,4 +53,10 @@ object RemoteModule {
             .client(client)
             .build()
             .create(MarvelApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideMarvelRepository(api: MarvelApi): MarvelRepository {
+        return MarvelRepositoryImpl(api)
+    }
 }

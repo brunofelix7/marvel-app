@@ -1,13 +1,15 @@
 package dev.brunofelix.marvelapp.data.remote.interceptor
 
+import dagger.Provides
 import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.extension.toMd5Hash
 import okhttp3.Interceptor
 import okhttp3.Response
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HttpInterceptor : Interceptor {
+class HttpInterceptor @Inject constructor() : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val currentTimestamp = System.currentTimeMillis()
