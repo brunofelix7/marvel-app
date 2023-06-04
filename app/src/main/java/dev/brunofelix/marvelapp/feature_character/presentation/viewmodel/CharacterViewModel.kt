@@ -1,11 +1,11 @@
-package dev.brunofelix.marvelapp.presentation.viewmodel
+package dev.brunofelix.marvelapp.feature_character.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.brunofelix.marvelapp.data.ResourceState
-import dev.brunofelix.marvelapp.domain.model.Character
-import dev.brunofelix.marvelapp.domain.use_case.ListCharactersUseCase
+import dev.brunofelix.marvelapp.feature_character.domain.model.Character
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.ListCharactersUseCase
 import dev.brunofelix.marvelapp.presentation.UIEvent
 import dev.brunofelix.marvelapp.presentation.UIState
 import kotlinx.coroutines.flow.MutableSharedFlow

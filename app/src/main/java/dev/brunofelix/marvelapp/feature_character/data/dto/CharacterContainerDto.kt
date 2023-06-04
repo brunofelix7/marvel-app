@@ -1,9 +1,8 @@
-package dev.brunofelix.marvelapp.data.remote.dto
+package dev.brunofelix.marvelapp.feature_character.data.dto
 
 import com.google.gson.annotations.SerializedName
-import dev.brunofelix.marvelapp.domain.model.Character
 
-data class CharacterContainer(
+data class CharacterContainerDto(
     @SerializedName("results")
     var results: List<CharacterDto>? = emptyList()
 )

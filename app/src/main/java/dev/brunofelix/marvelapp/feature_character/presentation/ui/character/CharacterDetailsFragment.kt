@@ -1,16 +1,16 @@
-package dev.brunofelix.marvelapp.presentation.ui.character
+package dev.brunofelix.marvelapp.feature_character.presentation.ui.character
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import dev.brunofelix.marvelapp.databinding.FragmentCharacterSearchBinding
+import dev.brunofelix.marvelapp.databinding.FragmentCharacterDetailsBinding
 import dev.brunofelix.marvelapp.presentation.ui.BaseFragment
-import dev.brunofelix.marvelapp.presentation.viewmodel.CharacterViewModel
+import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterViewModel
 
 @AndroidEntryPoint
-class CharacterSearchFragment : BaseFragment<FragmentCharacterSearchBinding, CharacterViewModel>(
-    FragmentCharacterSearchBinding::inflate
+class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, CharacterViewModel>(
+    FragmentCharacterDetailsBinding::inflate
 ) {
 
     override val viewModel: CharacterViewModel by viewModels()

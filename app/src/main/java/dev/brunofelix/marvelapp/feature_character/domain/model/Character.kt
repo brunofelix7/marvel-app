@@ -1,6 +1,7 @@
-package dev.brunofelix.marvelapp.domain.model
+package dev.brunofelix.marvelapp.feature_character.domain.model
 
 import android.os.Parcelable
+import dev.brunofelix.marvelapp.domain.model.Thumbnail
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

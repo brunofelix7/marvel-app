@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.presentation.ui.character
+package dev.brunofelix.marvelapp.feature_character.presentation.ui.character
 
 import android.os.Bundle
 import android.view.View
@@ -12,9 +12,9 @@ import dev.brunofelix.marvelapp.extension.showSnackBar
 import dev.brunofelix.marvelapp.extension.showToast
 import dev.brunofelix.marvelapp.presentation.UIEvent
 import dev.brunofelix.marvelapp.presentation.UIState
-import dev.brunofelix.marvelapp.presentation.adapter.CharacterAdapter
+import dev.brunofelix.marvelapp.feature_character.presentation.adapter.CharacterAdapter
 import dev.brunofelix.marvelapp.presentation.ui.BaseFragment
-import dev.brunofelix.marvelapp.presentation.viewmodel.CharacterViewModel
+import dev.brunofelix.marvelapp.feature_character.presentation.viewmodel.CharacterViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

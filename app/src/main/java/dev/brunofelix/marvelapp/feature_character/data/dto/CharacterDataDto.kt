@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.data.remote.dto
+package dev.brunofelix.marvelapp.feature_character.data.dto
 
 import com.google.gson.annotations.SerializedName
 
@@ -10,5 +10,5 @@ data class CharacterDataDto(
     var status: String? = null,
 
     @SerializedName("data")
-    var data: CharacterContainer? = null
+    var data: CharacterContainerDto? = null
 )

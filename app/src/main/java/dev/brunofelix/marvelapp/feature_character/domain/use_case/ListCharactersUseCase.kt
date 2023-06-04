@@ -1,8 +1,8 @@
-package dev.brunofelix.marvelapp.domain.use_case
+package dev.brunofelix.marvelapp.feature_character.domain.use_case
 
 import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.data.ResourceState
-import dev.brunofelix.marvelapp.domain.repository.MarvelRepository
+import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRepository
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import java.io.IOException
@@ -10,14 +10,14 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class ListCharactersUseCase @Inject constructor(
-    private val repository: MarvelRepository
+    private val repository: CharacterRepository
 ) {
 
     suspend operator fun invoke(name: String?) = flow {
         try {
             emit(ResourceState.Loading())
 
-            val response = repository.getCharacters(name)
+            val response = repository.fetchCharacters(name)
             val body = response.body()
 
             if (response.isSuccessful) {
