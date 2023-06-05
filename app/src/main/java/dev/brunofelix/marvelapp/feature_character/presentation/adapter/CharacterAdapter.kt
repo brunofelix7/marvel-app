@@ -38,7 +38,6 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val character = differ.currentList[position]
-        holder.setIsRecyclable(false)
         holder.binding.apply {
             val imageUrl = "${character.thumbnail?.path}.${character.thumbnail?.extension}"
 
