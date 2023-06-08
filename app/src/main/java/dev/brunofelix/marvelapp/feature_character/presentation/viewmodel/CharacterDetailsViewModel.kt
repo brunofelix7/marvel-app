@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.brunofelix.marvelapp.core.data.DataSourceState
-import dev.brunofelix.marvelapp.feature_character.domain.use_case.CharacterListUseCase
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
-import dev.brunofelix.marvelapp.feature_character.presentation.ui.CharacterUIState
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.FindComicsUseCase
+import dev.brunofelix.marvelapp.feature_character.presentation.ui.ComicUIState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,31 +17,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterListViewModel @Inject constructor(
-    private val useCase: CharacterListUseCase
+class CharacterDetailsViewModel @Inject constructor(
+    private val useCase: FindComicsUseCase
 ) : ViewModel() {
 
     private val _uiEvent = MutableSharedFlow<UIEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
 
-    private var _charactersListState = MutableStateFlow(CharacterUIState())
-    val charactersListState: StateFlow<CharacterUIState> get() = _charactersListState
+    private var _characterDetailsState = MutableStateFlow(ComicUIState())
+    val characterDetailsState: StateFlow<ComicUIState> get() = _characterDetailsState
 
-    init {
-        fetchCharacters()
-    }
-
-    private fun fetchCharacters() = viewModelScope.launch {
-        useCase.invoke().onEach { response ->
+    private fun fetchComics(characterId: Int) = viewModelScope.launch {
+        useCase.invoke(characterId).onEach { response ->
             when (response) {
                 is DataSourceState.Loading -> {
-                    _charactersListState.value = CharacterUIState(isLoading = true)
+                    _characterDetailsState.value = ComicUIState(isLoading = true)
                 }
                 is DataSourceState.Success -> {
-                    _charactersListState.value = CharacterUIState(data = response.data)
+                    _characterDetailsState.value = ComicUIState(data = response.data)
                 }
                 is DataSourceState.Error -> {
-                    _charactersListState.value = CharacterUIState(isLoading = false)
+                    _characterDetailsState.value = ComicUIState(isLoading = false)
                     _uiEvent.emit(UIEvent.ShowSnackBar(response.message))
                 }
             }

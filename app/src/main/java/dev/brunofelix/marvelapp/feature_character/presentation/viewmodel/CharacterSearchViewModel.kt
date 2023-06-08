@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.brunofelix.marvelapp.core.data.DataSourceState
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
-import dev.brunofelix.marvelapp.feature_character.domain.use_case.SearchCharactersUseCase
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.CharacterSearchUseCase
 import dev.brunofelix.marvelapp.feature_character.presentation.ui.CharacterUIState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterSearchViewModel @Inject constructor(
-    private val useCase: SearchCharactersUseCase
+    private val useCase: CharacterSearchUseCase
 ) : ViewModel() {
 
     private val _uiEvent = MutableSharedFlow<UIEvent>()

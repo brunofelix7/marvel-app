@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.feature_comic.presentation.adapter
+package dev.brunofelix.marvelapp.feature_character.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.brunofelix.marvelapp.databinding.ItemComicBinding
-import dev.brunofelix.marvelapp.feature_comic.domain.model.Comic
+import dev.brunofelix.marvelapp.feature_character.domain.model.Comic
 
 class ComicAdapter : RecyclerView.Adapter<ComicViewHolder>() {
 

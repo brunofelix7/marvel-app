@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.feature_comic.domain.model
+package dev.brunofelix.marvelapp.feature_character.domain.model
 
 import android.os.Parcelable
 import dev.brunofelix.marvelapp.core.domain.model.Thumbnail

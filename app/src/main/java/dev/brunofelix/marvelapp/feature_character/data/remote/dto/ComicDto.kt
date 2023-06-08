@@ -1,8 +1,8 @@
-package dev.brunofelix.marvelapp.feature_comic.data.remote.dto
+package dev.brunofelix.marvelapp.feature_character.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 import dev.brunofelix.marvelapp.core.data.remote.dto.ThumbnailDto
-import dev.brunofelix.marvelapp.feature_comic.domain.model.Comic
+import dev.brunofelix.marvelapp.feature_character.domain.model.Comic
 
 data class ComicDto(
     @SerializedName("id")

@@ -1,7 +1,7 @@
 package dev.brunofelix.marvelapp.core.data.remote
 
 import dev.brunofelix.marvelapp.feature_character.data.remote.dto.CharacterDataDto
-import dev.brunofelix.marvelapp.feature_comic.data.remote.dto.ComicDataDto
+import dev.brunofelix.marvelapp.feature_character.data.remote.dto.ComicDataDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

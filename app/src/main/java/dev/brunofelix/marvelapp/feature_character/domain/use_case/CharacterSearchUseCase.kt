@@ -9,15 +9,15 @@ import java.io.IOException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class ListCharactersUseCase @Inject constructor(
+class CharacterSearchUseCase @Inject constructor(
     private val repository: CharacterRepository
 ) {
 
-    suspend operator fun invoke() = flow {
+    suspend operator fun invoke(name: String) = flow {
         try {
             emit(DataSourceState.Loading())
 
-            val response = repository.fetchCharacters()
+            val response = repository.fetchCharacters(name)
             val body = response.body()
 
             if (response.isSuccessful) {

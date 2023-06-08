@@ -7,6 +7,6 @@ import javax.inject.Inject
 class CharacterRepositoryImpl @Inject constructor(
     private val api: MarvelApi
 ) : CharacterRepository {
-
     override suspend fun fetchCharacters(name: String?) = api.getCharacters(name)
+    override suspend fun fetchComics(characterId: Int) = api.getComics(characterId)
 }

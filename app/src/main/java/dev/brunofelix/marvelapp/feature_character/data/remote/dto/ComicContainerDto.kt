@@ -1,4 +1,4 @@
-package dev.brunofelix.marvelapp.feature_comic.data.remote.dto
+package dev.brunofelix.marvelapp.feature_character.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
