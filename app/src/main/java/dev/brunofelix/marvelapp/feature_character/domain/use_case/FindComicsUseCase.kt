@@ -2,7 +2,7 @@ package dev.brunofelix.marvelapp.feature_character.domain.use_case
 
 import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.core.data.DataSourceState
-import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRepository
+import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRemoteRepository
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
 import java.io.IOException
@@ -10,7 +10,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class FindComicsUseCase @Inject constructor(
-    private val repository: CharacterRepository
+    private val repository: CharacterRemoteRepository
 ) {
 
     suspend operator fun invoke(characterId: Int) = flow {

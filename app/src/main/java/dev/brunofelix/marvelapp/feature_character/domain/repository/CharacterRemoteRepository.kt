@@ -4,7 +4,7 @@ import dev.brunofelix.marvelapp.feature_character.data.remote.dto.CharacterDataD
 import dev.brunofelix.marvelapp.feature_character.data.remote.dto.ComicDataDto
 import retrofit2.Response
 
-interface CharacterRepository {
+interface CharacterRemoteRepository {
     suspend fun fetchCharacters(name: String? = null): Response<CharacterDataDto>
     suspend fun fetchComics(characterId: Int): Response<ComicDataDto>
 }

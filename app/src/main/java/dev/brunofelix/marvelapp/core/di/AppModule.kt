@@ -1,10 +1,15 @@
 package dev.brunofelix.marvelapp.core.di
 
+import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.brunofelix.marvelapp.BuildConfig
+import dev.brunofelix.marvelapp.core.data.local.MarvelDatabase
+import dev.brunofelix.marvelapp.core.data.local.converter.Converters
 import dev.brunofelix.marvelapp.core.data.remote.interceptor.HttpInterceptor
 import dev.brunofelix.marvelapp.core.data.remote.MarvelApi
 import okhttp3.OkHttpClient
@@ -55,4 +60,14 @@ object AppModule {
             .client(client)
             .build()
             .create(MarvelApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): MarvelDatabase =
+        Room.databaseBuilder(
+                context = context.applicationContext,
+                klass = MarvelDatabase::class.java,
+                name = "marvel.db")
+            .addTypeConverter(Converters())
+            .build()
 }

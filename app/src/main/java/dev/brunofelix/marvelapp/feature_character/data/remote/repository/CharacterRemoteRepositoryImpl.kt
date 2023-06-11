@@ -1,12 +1,12 @@
 package dev.brunofelix.marvelapp.feature_character.data.remote.repository
 
 import dev.brunofelix.marvelapp.core.data.remote.MarvelApi
-import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRepository
+import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRemoteRepository
 import javax.inject.Inject
 
-class CharacterRepositoryImpl @Inject constructor(
+class CharacterRemoteRepositoryImpl @Inject constructor(
     private val api: MarvelApi
-) : CharacterRepository {
+) : CharacterRemoteRepository {
     override suspend fun fetchCharacters(name: String?) = api.getCharacters(name)
     override suspend fun fetchComics(characterId: Int) = api.getComics(characterId)
 }
