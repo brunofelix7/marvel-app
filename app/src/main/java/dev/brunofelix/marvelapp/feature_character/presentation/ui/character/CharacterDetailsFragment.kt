@@ -2,9 +2,11 @@ package dev.brunofelix.marvelapp.feature_character.presentation.ui.character
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +48,25 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, C
 
     override fun configureUI() {
         configureUIEvents()
+        configureToolbar()
+    }
+
+    private fun configureToolbar() = with(binding) {
+        characterDetailsToolbar.inflateMenu(R.menu.menu_details)
+        characterDetailsToolbar.title = args.character.name
+        characterDetailsToolbar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_back)
+        characterDetailsToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        characterDetailsToolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.item_favorite -> {
+                    // TODO: Favorite character
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun configureRecyclerView() = with(binding) {

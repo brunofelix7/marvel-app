@@ -24,7 +24,7 @@
             android:paddingTop="44dp"
             app:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline4"
             app:titleTextColor="@color/white"
-            app:title="Marvel" />
+            app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
