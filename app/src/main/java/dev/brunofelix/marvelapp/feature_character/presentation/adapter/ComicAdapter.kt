@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import dev.brunofelix.marvelapp.R
 import dev.brunofelix.marvelapp.databinding.ItemComicBinding
 import dev.brunofelix.marvelapp.feature_character.domain.model.Comic
 
@@ -36,12 +37,17 @@ class ComicAdapter : RecyclerView.Adapter<ComicViewHolder>() {
 
     override fun onBindViewHolder(holder: ComicViewHolder, position: Int) {
         val comic = differ.currentList[position]
-        holder.setIsRecyclable(false)
         holder.binding.apply {
             val imageUrl = "${comic.thumbnail?.path}.${comic.thumbnail?.extension}"
+            val context = holder.itemView.context
 
             comicName.text = comic.title
-            comicDescription.text = comic.description
+
+            if (comic.description.isEmpty()) {
+                comicDescription.text = context.resources.getString(R.string.empty_description)
+            } else {
+                comicDescription.text = comic.description
+            }
             Glide.with(holder.itemView.context)
                 .load(imageUrl)
                 .into(comicImage)

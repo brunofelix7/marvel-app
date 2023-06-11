@@ -27,7 +27,7 @@ class CharacterDetailsViewModel @Inject constructor(
     private var _characterDetailsState = MutableStateFlow(ComicUIState())
     val characterDetailsState: StateFlow<ComicUIState> get() = _characterDetailsState
 
-    private fun fetchComics(characterId: Int) = viewModelScope.launch {
+    fun fetchComics(characterId: Int) = viewModelScope.launch {
         useCase.invoke(characterId).onEach { response ->
             when (response) {
                 is DataSourceState.Loading -> {
