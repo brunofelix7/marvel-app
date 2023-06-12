@@ -1,11 +1,15 @@
 package dev.brunofelix.marvelapp.feature_character.presentation.viewmodel
 
+import android.content.res.Resources
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.brunofelix.marvelapp.R
 import dev.brunofelix.marvelapp.core.data.DataSourceState
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
+import dev.brunofelix.marvelapp.feature_character.domain.model.Character
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.FindComicsUseCase
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.SaveCharacterUseCase
 import dev.brunofelix.marvelapp.feature_character.presentation.ui.ComicUIState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,8 +22,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailsViewModel @Inject constructor(
-    private val useCase: FindComicsUseCase
+    private val findComicsUseCase: FindComicsUseCase,
+    private val saveCharacterUseCase: SaveCharacterUseCase,
 ) : ViewModel() {
+
+    @Inject
+    lateinit var resources: Resources
 
     private val _uiEvent = MutableSharedFlow<UIEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
@@ -28,7 +36,7 @@ class CharacterDetailsViewModel @Inject constructor(
     val characterDetailsState: StateFlow<ComicUIState> get() = _characterDetailsState
 
     fun fetchComics(characterId: Int) = viewModelScope.launch {
-        useCase.invoke(characterId).onEach { response ->
+        findComicsUseCase.invoke(characterId).onEach { response ->
             when (response) {
                 is DataSourceState.Loading -> {
                     _characterDetailsState.value = ComicUIState(isLoading = true)
@@ -42,5 +50,15 @@ class CharacterDetailsViewModel @Inject constructor(
                 }
             }
         }.launchIn(this)
+    }
+
+    fun saveCharacter(character: Character) = viewModelScope.launch {
+        val result = saveCharacterUseCase.invoke(character)
+
+        if (result > 0) {
+            _uiEvent.emit(UIEvent.ShowSnackBar(resources.getString(R.string.saved_successfully)))
+        } else {
+            _uiEvent.emit(UIEvent.ShowSnackBar(resources.getString(R.string.an_error_occurred)))
+        }
     }
 }

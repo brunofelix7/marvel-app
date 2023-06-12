@@ -9,7 +9,7 @@ import java.io.IOException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-class CharacterListUseCase @Inject constructor(
+class ListRemoteCharactersUseCase @Inject constructor(
     private val repository: CharacterRemoteRepository
 ) {
 

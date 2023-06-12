@@ -7,7 +7,7 @@ import dev.brunofelix.marvelapp.core.domain.model.Thumbnail
 @Entity(tableName = "thumbnails")
 data class ThumbnailEntity (
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
     val path: String?,
     val extension: String?
 ) {

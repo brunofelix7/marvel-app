@@ -8,5 +8,5 @@ class CharacterRemoteRepositoryImpl @Inject constructor(
     private val api: MarvelApi
 ) : CharacterRemoteRepository {
     override suspend fun fetchCharacters(name: String?) = api.getCharacters(name)
-    override suspend fun fetchComics(characterId: Int) = api.getComics(characterId)
+    override suspend fun findComics(characterId: Int) = api.getComics(characterId)
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.brunofelix.marvelapp.core.data.DataSourceState
-import dev.brunofelix.marvelapp.feature_character.domain.use_case.CharacterListUseCase
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.ListRemoteCharactersUseCase
 import dev.brunofelix.marvelapp.core.presentation.ui.UIEvent
 import dev.brunofelix.marvelapp.feature_character.presentation.ui.CharacterUIState
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterListViewModel @Inject constructor(
-    private val useCase: CharacterListUseCase
+    private val useCase: ListRemoteCharactersUseCase
 ) : ViewModel() {
 
     private val _uiEvent = MutableSharedFlow<UIEvent>()

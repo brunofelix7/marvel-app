@@ -6,5 +6,5 @@ import retrofit2.Response
 
 interface CharacterRemoteRepository {
     suspend fun fetchCharacters(name: String? = null): Response<CharacterDataDto>
-    suspend fun fetchComics(characterId: Int): Response<ComicDataDto>
+    suspend fun findComics(characterId: Int): Response<ComicDataDto>
 }

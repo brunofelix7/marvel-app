@@ -61,7 +61,7 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, C
         characterDetailsToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.item_favorite -> {
-                    // TODO: Favorite character
+                    viewModel.saveCharacter(args.character)
                     true
                 }
                 else -> false

@@ -17,7 +17,7 @@ class FindComicsUseCase @Inject constructor(
         try {
             emit(DataSourceState.Loading())
 
-            val response = repository.fetchComics(characterId)
+            val response = repository.findComics(characterId)
             val body = response.body()
 
             if (response.isSuccessful) {
