@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterLocalRepository {
     suspend fun insert(entity: CharacterEntity): Long
     suspend fun delete(entity: CharacterEntity)
-    fun list(): Flow<List<CharacterEntity>>
+    fun list(): Flow<List<CharacterEntity>?>
 }

@@ -10,9 +10,11 @@ import dev.brunofelix.marvelapp.feature_character.data.local.repository.Characte
 import dev.brunofelix.marvelapp.feature_character.data.remote.repository.CharacterRemoteRepositoryImpl
 import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterLocalRepository
 import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterRemoteRepository
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.DeleteCharacterUseCase
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.ListRemoteCharactersUseCase
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.SearchCharacterUseCase
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.FindComicsUseCase
+import dev.brunofelix.marvelapp.feature_character.domain.use_case.ListLocalCharactersUseCase
 import dev.brunofelix.marvelapp.feature_character.domain.use_case.SaveCharacterUseCase
 import javax.inject.Singleton
 
@@ -39,6 +41,16 @@ object CharacterModule {
     @Singleton
     fun provideSaveCharacterUseCase(repository: CharacterLocalRepository) =
         SaveCharacterUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideDeleteCharacterUseCase(repository: CharacterLocalRepository) =
+        DeleteCharacterUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideListLocalCharactersUseCase(repository: CharacterLocalRepository) =
+        ListLocalCharactersUseCase(repository)
 
     @Provides
     @Singleton

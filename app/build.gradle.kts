@@ -42,6 +42,8 @@ android {
             buildConfigField("String", "UNKNOWN_ERROR", "\"${messagesProperties.getProperty("msg_unknown_error")}\"")
             buildConfigField("String", "HOST_ERROR", "\"${messagesProperties.getProperty("msg_unknown_host")}\"")
             buildConfigField("String", "SERVER_ERROR", "\"${messagesProperties.getProperty("msg_connection_error")}\"")
+
+            buildConfigField("String", "EMPTY_LIST", "\"${messagesProperties.getProperty("msg_empty")}\"")
         }
         release {
             isMinifyEnabled = false
