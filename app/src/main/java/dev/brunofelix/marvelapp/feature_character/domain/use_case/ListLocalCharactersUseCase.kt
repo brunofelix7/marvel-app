@@ -4,6 +4,7 @@ import dev.brunofelix.marvelapp.BuildConfig
 import dev.brunofelix.marvelapp.core.data.DataSourceState
 import dev.brunofelix.marvelapp.feature_character.domain.model.Character
 import dev.brunofelix.marvelapp.feature_character.domain.repository.CharacterLocalRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
@@ -17,7 +18,7 @@ class ListLocalCharactersUseCase @Inject constructor(
         try {
             emit(DataSourceState.Loading())
 
-            repository.list().collectLatest { result ->
+            repository.list().collect { result ->
                 if (result.isNullOrEmpty()) {
                     emit(DataSourceState.Error(message = BuildConfig.EMPTY_LIST))
                 } else {
