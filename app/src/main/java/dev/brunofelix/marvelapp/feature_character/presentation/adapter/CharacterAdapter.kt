@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import dev.brunofelix.marvelapp.core.extension.loadImage
 import dev.brunofelix.marvelapp.databinding.ItemCharacterBinding
 import dev.brunofelix.marvelapp.feature_character.domain.model.Character
 
@@ -42,10 +42,7 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterViewHolder>() {
             val imageUrl = "${character.thumbnail?.path}.${character.thumbnail?.extension}"
 
             characterName.text = character.name
-            Glide.with(holder.itemView.context)
-                .load(imageUrl)
-                .centerCrop()
-                .into(characterImage)
+            characterImage.loadImage(imageUrl)
         }
         holder.itemView.setOnClickListener {
             onItemClickListener?.let {

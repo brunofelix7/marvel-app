@@ -8,10 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import dev.brunofelix.marvelapp.R
 import dev.brunofelix.marvelapp.core.extension.hide
+import dev.brunofelix.marvelapp.core.extension.loadImage
 import dev.brunofelix.marvelapp.core.extension.showSnackBar
 import dev.brunofelix.marvelapp.core.extension.showToast
 import dev.brunofelix.marvelapp.databinding.FragmentCharacterDetailsBinding
@@ -106,9 +106,7 @@ class CharacterDetailsFragment : BaseFragment<FragmentCharacterDetailsBinding, C
         }
 
         val imageUrl = "${character.thumbnail?.path}.${character.thumbnail?.extension}"
-        Glide.with(requireContext())
-            .load(imageUrl)
-            .into(characterDetailsImage)
+        characterDetailsImage.loadImage(imageUrl)
     }
 
     private fun configureUIEvents() {
